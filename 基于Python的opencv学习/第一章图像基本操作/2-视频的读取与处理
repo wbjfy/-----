@@ -1,0 +1,22 @@
+#视频也是由图像构成  每一帧都是一个图像
+#cv2.VideoCapture() 可以捕获摄像头，用数字来控制不同的设备，例如0.1
+#如果是视频文件，直接指定好路径即可。
+
+import cv2 #读取的格式是BGR
+vc = cv2.VideoCapture(r"G:\460ecdcf9693e6fee86dbc36d0e6895a.mp4") 
+#检测是否打开正确
+if vc.isOpened(): 
+    open,frame = vc.read() #读取第一帧
+else:
+    open = False
+while open:
+    ret,frame = vc.read() #读取每一帧
+    if frame is None:
+        break
+    if ret == True:
+        gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY) #将每一帧转换为灰度图
+        cv2.imshow("video",gray) #显示视频
+        if cv2.waitKey(10) & 0xFF == 27: 
+            break
+vc.release() #释放摄像头
+cv2.destroyAllWindows() #关闭所有窗口

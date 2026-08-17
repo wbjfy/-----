@@ -1,0 +1,23 @@
+# 每一个小格是一个像素点
+# 像素点的值[0-255]表示亮度  0（黑色） 255（白色）
+# 只有彩色图有三个颜色通道分为R（红）、G（绿）、B（蓝）
+# 每个通道由矩阵构成，矩阵大小等于图像大小
+import cv2 #读取的格式是BGR
+import numpy as np
+import matplotlib.pyplot as plt
+def cv_show(name,img):
+    cv2.imshow(name,img) #显示图片
+    cv2.waitKey(0) #等待按键
+    cv2.destroyAllWindows() #关闭所有窗口
+img = cv2.imread(r"G:\136b9d4075769c0b28950c3325e9fa16.jpg") #读取图片   
+print(img)
+print(cv_show("img",img)) #显示图片
+print(img.shape) #打印图像的大小
+#第一个数为h，第二个数为w，第三个数为通道数
+img = cv2.imread(r"G:\136b9d4075769c0b28950c3325e9fa16.jpg",cv2.IMREAD_GRAYSCALE) #读取图片 
+print(img)
+print(img.shape) #打印图像的大小
+print(cv_show("img",img)) #显示图片
+print(type(img)) #打印图像的类型
+print(img.size) #打印图像的像素点个数
+print(img.dtype) #打印图像的像素点类型
