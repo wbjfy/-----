@@ -1,0 +1,14 @@
+import cv2
+def cv_show(name,img):
+    cv2.imshow(name,img) #显示图片
+    cv2.waitKey(0) #等待按键
+    cv2.destroyAllWindows() #关闭所有窗口
+img = cv2.imread(r"G:\136b9d4075769c0b28950c3325e9fa16.jpg") #读取图片
+#1.均值滤波
+#简单的平均卷积操作
+blurred = cv2.blur(img,(5,5)) #卷积核为5*5
+print(cv_show("blurred",blurred)) #显示图片
+#2.方框滤波
+#基本和均值意义2，可以选择归一化
+box = cv2.boxFilter(img,-1,(5,5),normalize=True) #卷积核为5*5  若为flase容易越界 大于255时全为255
+print(cv_show("box",box)) #显示图片

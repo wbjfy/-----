@@ -1,0 +1,25 @@
+import cv2
+import matplotlib.pyplot as plt
+def cv_show(name,img):
+    cv2.imshow(name,img) #显示图片
+    cv2.waitKey(0) #等待按键
+    cv2.destroyAllWindows() #关闭所有窗口
+img = cv2.imread(r"G:\136b9d4075769c0b28950c3325e9fa16.jpg") #读取图片
+img2 = img + 10
+print(img[:5,:,0])
+print(img2[:5,:,0])
+print((img + img2)[:5,:,0])
+#当超过255时，像素值会溢出，会整除256取余数
+print(cv2.add(img,img2)[:5,:,0])  
+#cv2.add()函数会对像素值进行裁剪，超过255的像素值会被裁剪为255
+
+
+#图像融合
+img1 = cv2.imread(r"G:\bf042ff8ddade905f73753c6a15a955d.jpg")
+#融合时若shape大小不一样不可以进行融合
+#cv2.resize(img2,(width, height))函数可以对图像进行改变大小
+#cv2.resize(img2,(0,0),fx=0.5,fy=0.5)函数可以对图像进行缩放，fx和fy分别是x轴和y轴的缩放比例
+print(img.shape,img1.shape)
+img = cv2.resize(img,(1080,1080))
+res = cv2.addWeighted(img,0.4,img1,0.6,0) #图像融合  后面为权重比例
+print(cv_show('res',res))
